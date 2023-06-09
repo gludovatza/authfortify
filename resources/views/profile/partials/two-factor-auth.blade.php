@@ -34,7 +34,6 @@
         >{{ __('Please finish configuring two factor authentication below.') }}</p>
 
     @endif
-asdf {{ config('fortify.features[2]')}}
     @if(! auth()->user()->two_factor_secret)
         @if(session('auth.password_confirmed_at') != null)
             <form method="post" action="{{ route('two-factor.enable') }}" class="mt-6 space-y-6">
