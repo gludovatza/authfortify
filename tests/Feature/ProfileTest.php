@@ -96,4 +96,19 @@ class ProfileTest extends TestCase
 
         $this->assertNotNull($user->fresh());
     }
+
+    public function test_guest_cannot_ping()
+    {
+        $this->json('get', 'api/ping')->assertStatus(401);
+    }
+
+    public function test_user_can_ping()
+    {
+        $user = User::factory()->create();
+
+        $this
+            ->actingAs($user, 'sanctum')
+            ->getJson('api/ping')
+            ->assertOk();
+    }
 }
